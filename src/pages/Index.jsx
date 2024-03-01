@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, FormControl, FormLabel, Input, VStack, useToast } from "@chakra-ui/react";
+import { Box, Button, FormControl, FormLabel, Input, VStack, Text, useToast } from "@chakra-ui/react";
 import { FaGoogle } from "react-icons/fa";
 
 const Index = () => {
@@ -51,24 +51,29 @@ const Index = () => {
   };
 
   return (
-    <Box p={8}>
-      <VStack spacing={4} as="form" onSubmit={handleSubmit}>
-        <FormControl isRequired>
-          <FormLabel htmlFor="name">Name</FormLabel>
-          <Input id="name" name="name" value={formData.name} onChange={handleInputChange} placeholder="Enter your name" />
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel htmlFor="email">Email</FormLabel>
-          <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="Enter your email" />
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="message">Message</FormLabel>
-          <Input id="message" name="message" value={formData.message} onChange={handleInputChange} placeholder="Enter a message (optional)" />
-        </FormControl>
-        <Button leftIcon={<FaGoogle />} colorScheme="teal" type="submit">
-          Register
-        </Button>
-      </VStack>
+    <Box p={8} maxW="2xl" mx="auto">
+      <Text fontSize="4xl" mb={6} textAlign="center">
+        Registration Form
+      </Text>
+      <Box boxShadow="2xl" p="6" rounded="md" bg="white">
+        <VStack spacing={4} as="form" onSubmit={handleSubmit}>
+          <FormControl isRequired>
+            <FormLabel htmlFor="name">Name</FormLabel>
+            <Input id="name" name="name" value={formData.name} onChange={handleInputChange} placeholder="Enter your name" />
+          </FormControl>
+          <FormControl isRequired>
+            <FormLabel htmlFor="email">Email</FormLabel>
+            <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="Enter your email" />
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="message">Message</FormLabel>
+            <Input id="message" name="message" value={formData.message} onChange={handleInputChange} placeholder="Enter a message (optional)" />
+          </FormControl>
+          <Button leftIcon={<FaGoogle />} colorScheme="blue" color="white" type="submit">
+            Register
+          </Button>
+        </VStack>
+      </Box>
     </Box>
   );
 };
