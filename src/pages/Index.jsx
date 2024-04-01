@@ -53,7 +53,7 @@ const Index = () => {
 
   return (
     <Box p={8} maxW="2xl" mx="auto">
-      <Text fontSize="4xl" mb={6} textAlign="center">
+      <Text fontSize="4xl" mb={6} textAlign="center" color="purple.500">
         Registration Form
       </Text>
       <Box boxShadow="2xl" p="6" rounded="md" bg="white">
