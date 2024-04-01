@@ -4,9 +4,11 @@ import { FaGoogle } from "react-icons/fa";
 
 const Index = () => {
   const toast = useToast();
+  const [isSignUp, setIsSignUp] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    password: "",
     message: "",
   });
 
@@ -18,7 +20,6 @@ const Index = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Submit to Google Sheets (the URL should be the one provided by your Google Apps Script deployment)
     const scriptURL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
 
     fetch(scriptURL, {
@@ -31,8 +32,8 @@ const Index = () => {
       .then((response) => response.json())
       .then((data) => {
         toast({
-          title: "Registration Successful",
-          description: "You've been registered successfully!",
+          title: isSignUp ? "Registration Successful" : "Sign In Successful",
+          description: isSignUp ? "You've been registered successfully!" : "You've signed in successfully!",
           status: "success",
           duration: 5000,
           isClosable: true,
@@ -40,8 +41,8 @@ const Index = () => {
       })
       .catch((error) => {
         toast({
-          title: "Registration Error",
-          description: "There was an issue with your registration.",
+          title: isSignUp ? "Registration Error" : "Sign In Error",
+          description: isSignUp ? "There was an issue with your registration." : "There was an issue signing in.",
           status: "error",
           duration: 5000,
           isClosable: true,
@@ -57,20 +58,29 @@ const Index = () => {
       </Text>
       <Box boxShadow="2xl" p="6" rounded="md" bg="white">
         <VStack spacing={4} as="form" onSubmit={handleSubmit}>
-          <FormControl isRequired>
-            <FormLabel htmlFor="name">Name</FormLabel>
-            <Input id="name" name="name" value={formData.name} onChange={handleInputChange} placeholder="Enter your name" />
-          </FormControl>
+          {isSignUp && (
+            <FormControl isRequired>
+              <FormLabel htmlFor="name">Name</FormLabel>
+              <Input id="name" name="name" value={formData.name} onChange={handleInputChange} placeholder="Enter your name" />
+            </FormControl>
+          )}
           <FormControl isRequired>
             <FormLabel htmlFor="email">Email</FormLabel>
             <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="Enter your email" />
+          </FormControl>
+          <FormControl isRequired>
+            <FormLabel htmlFor="password">Password</FormLabel>
+            <Input id="password" name="password" type="password" value={formData.password} onChange={handleInputChange} placeholder="Enter your password" />
           </FormControl>
           <FormControl>
             <FormLabel htmlFor="message">Message</FormLabel>
             <Input id="message" name="message" value={formData.message} onChange={handleInputChange} placeholder="Enter a message (optional)" />
           </FormControl>
           <Button leftIcon={<FaGoogle />} colorScheme="blue" color="white" type="submit">
-            Register
+            {isSignUp ? "Sign Up" : "Sign In"}
+          </Button>
+          <Button variant="link" onClick={() => setIsSignUp(!isSignUp)}>
+            {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
           </Button>
         </VStack>
       </Box>
