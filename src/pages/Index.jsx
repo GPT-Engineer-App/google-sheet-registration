@@ -52,10 +52,10 @@ const Index = () => {
 
   return (
     <Box p={8} maxW="2xl" mx="auto">
-      <Text fontSize="4xl" mb={6} textAlign="center" color="blue.500" fontWeight="bold" border="1px solid #E2E8F0" boxShadow="md" p={2}>
+      <Text fontSize="4xl" mb={6} textAlign="center">
         Registration Form
       </Text>
-      <Box boxShadow="2xl" p="6" rounded="md" bg="white" border="1px solid #E2E8F0">
+      <Box boxShadow="2xl" p="6" rounded="md" bg="white">
         <VStack spacing={4} as="form" onSubmit={handleSubmit}>
           <FormControl isRequired>
             <FormLabel htmlFor="name">Name</FormLabel>
